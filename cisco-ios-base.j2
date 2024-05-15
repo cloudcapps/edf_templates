@@ -103,7 +103,7 @@ line con 0
  exec-timeout {{line.exec_timeout}} 0
  logging synchronous
 line vty 0 {{line.vty_max}}
- access-class REMOTE_ACCESS in vrf-also
+ access-class {{line.acl}} in vrf-also
  login authentication {{aaa.authentication_list}}
  transport input ssh
  exec-timeout {{line.exec_timeout}} 0
