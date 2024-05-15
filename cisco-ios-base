@@ -1,0 +1,117 @@
+aaa new-model
+!
+!
+aaa group server radius {{aaa.server_group}}
+{%- for server in radius.servers %}
+ server name {{server}}
+{%- endfor %}
+{%- if mgmt_vrf is not false %}
+ ip vrf forwarding {{ mgmt_vrf }}
+{%- endif %}
+ deadtime 5
+!
+aaa authentication login {{aaa.authentication_list}} group {{aaa.server_group}} local
+aaa authentication login CON_0 local
+aaa authentication enable default group {{aaa.server_group}} enable
+aaa authorization console
+aaa authorization exec default group {{aaa.server_group}} local none 
+aaa authorization exec CON_0_AUTH local 
+!
+!
+aaa session-id common
+!
+clock timezone PST -8 0
+clock summer-time PDT recurring
+!
+no ip http server
+no ip http secure-server
+no ip finger
+no ip source-route
+no ip gratuitous-arps
+no ip domain-lookup
+!
+ip domain name {{domain.name}}
+ip routing
+!
+crypto key generate rsa general-keys modulus {{crypto.key_size}}
+!
+ip ssh time-out {{line.exec_timeout}}
+ip ssh authentication-retries 3
+ip ssh version 2
+!
+archive
+ log config
+  logging enable
+  logging size 700
+  hidekeys
+ path flash:archive
+ maximum 10
+ write-memory
+!
+hostname {{device.name}}
+!
+enable secret {{secret}}
+username ProdAdmin privilege 15 secret {{secret}}
+!
+{%- for vl in device.site.vlans.all() %}
+vlan {{vl.vid }}
+   name {{ vl.name }}
+!
+{%- endfor %}
+!
+{%- for acl, services in access_lists.items() %}
+ip access-list standard {{acl}}
+{%- for service, hosts in services.items() %}
+{%- for host in hosts %}
+ permit {{host}}
+{%- endfor %}
+{%- endfor %}
+{%- endfor %}
+!
+logging source-interface {{source_interface}}
+{%- for server in syslog.servers %}
+logging host {{server}} transport udp port {{syslog.port}}
+{%- endfor %}
+!
+{%- for profiles, params in snmp.items() %}
+snmp-server group {{params.group}} v3 priv read {{params.view}}
+snmp-server view {{params.view}} iso included
+snmp-server user {{params.user}} {{params.group}} v3 auth sha {{params.auth}} priv aes 256 {{params.priv}} access {{params.acl}}
+{%- endfor %}
+!
+{%- for server, ip in radius.servers.items() %}
+radius server {{server}}
+ address ipv4 {{ip}} auth-port {{radius.auth_port}} acct-port {{radius.acct_port}}
+ key {{radius.key}}
+{%- endfor %}
+!
+banner login %
+
+**************************************************************
+*          WARNING - UNAUTHORIZED ACCESS PROHIBITED          *
+*                                                            *
+* Access to this device is not authorized.  Any attempt for  *
+* unauthorized access will be logged and appropriate legal   *
+* action will be taken.                                      *
+**************************************************************
+
+%
+!
+line con 0
+ authorization exec CON_0_AUTH
+ login authentication CON_0
+ exec-timeout {{line.exec_timeout}} 0
+ logging synchronous
+line vty 0 {{line.vty_max}}
+ access-class REMOTE_ACCESS in vrf-also
+ login authentication {{aaa.authentication_list}}
+ transport input ssh
+ exec-timeout {{line.exec_timeout}} 0
+ logging synchronous
+line aux 0
+ no exec
+!
+{%- for server in ntp.servers %}
+ntp server {{server}}
+{%- endfor %}
+!
