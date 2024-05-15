@@ -1,0 +1,32 @@
+interface Vlan1000
+ ip address {{device.primary_ip.address}} {{device.primary_ip.address.netmask}}
+end
+!
+interface GigabitEthernet1/0/47
+ description FW-A Eth5
+ switchport mode trunk
+ channel-group 10 mode active
+!
+interface GigabitEthernet1/0/48
+ description FW-B Eth5
+ switchport mode trunk
+ channel-group 20 mode active
+!
+interface GigabitEthernet2/0/47
+ description FW-A Eth6
+ switchport mode trunk
+ channel-group 10 mode active
+!
+interface GigabitEthernet2/0/48
+ description FW-B Eth6
+ switchport mode trunk
+ channel-group 20 mode active
+!
+interface Port-channel10
+ description FW-A UPLINK
+ switchport mode trunk
+!
+interface Port-channel20
+ description FW-B UPLINK
+ switchport mode trunk
+!
