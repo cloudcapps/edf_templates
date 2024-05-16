@@ -50,13 +50,9 @@ archive
 !
 hostname {{device.name}}
 !
-enable secret {{secret}}
-username ProdAdmin privilege 15 secret {{secret}}
-!
-{%- for vl in device.site.vlans.all() %}
-vlan {{vl.vid }}
-   name {{ vl.name }}
-!
+enable secret {{enable.secret}}
+{%- for user in users %}
+username {{user.name}} privilege 15 secret {{user.secret}}
 {%- endfor %}
 !
 {%- for acl, services in access_lists.items() %}
