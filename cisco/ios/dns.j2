@@ -1,7 +1,7 @@
 
 no ip domain-lookup
 !
-ip domain name {{domain.name}}
+ip domain name {{dns.domain_name}}
 !
 {%- for server in dns.servers %}
 ip name-server {{ server }}
