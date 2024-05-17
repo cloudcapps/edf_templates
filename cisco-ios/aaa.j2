@@ -1,0 +1,26 @@
+aaa new-model
+!
+aaa group server radius {{aaa.server_group}}
+{%- for server in radius.servers %}
+ server name {{server}}
+{%- endfor %}
+{%- if mgmt_vrf is not false %}
+ ip vrf forwarding {{ mgmt_vrf }}
+{%- endif %}
+ deadtime 5
+!
+aaa authentication login {{aaa.authentication_list}} group {{aaa.server_group}} local
+aaa authentication login CON_0 local
+aaa authentication enable default group {{aaa.server_group}} enable
+aaa authorization console
+aaa authorization exec default group {{aaa.server_group}} local none 
+aaa authorization exec CON_0_AUTH local 
+!
+aaa session-id common
+!
+{%- for server, ip in radius.servers.items() %}
+radius server {{server}}
+ address ipv4 {{ip}} auth-port {{radius.auth_port}} acct-port {{radius.acct_port}}
+ key {{radius.key}}
+{%- endfor %}
+!

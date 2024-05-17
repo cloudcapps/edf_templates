@@ -1,0 +1,9 @@
+{%- for acl, services in access_lists.items() %}
+ip access-list standard {{acl}}
+{%- for service, hosts in services.items() %}
+{%- for host in hosts %}
+ permit {{host}}
+{%- endfor %}
+{%- endfor %}
+{%- endfor %}
+!

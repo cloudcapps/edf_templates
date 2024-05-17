@@ -1,0 +1,6 @@
+{%- for vl in device.site.vlans.all() %}
+vlan {{vl.vid }}
+   name {{ vl.name }}
+!
+{%- endfor %}
+!

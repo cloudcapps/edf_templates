@@ -1,11 +1,3 @@
-{% include 'cisco-ios-base.j2' %}
-!
-{%- for vl in device.site.vlans.all() %}
-vlan {{vl.vid }}
-   name {{ vl.name }}
-!
-{%- endfor %}
-!
 interface Vlan1000
  ip address {{device.primary_ip.address}} {{device.primary_ip.address.netmask}}
 end
