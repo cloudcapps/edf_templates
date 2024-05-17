@@ -17,6 +17,7 @@ ip routing
 crypto key generate rsa general-keys modulus {{crypto.key_size}}
 !
 {% include 'cisco/ios/ssh.j2' %}
+!
 archive
  log config
   logging enable
