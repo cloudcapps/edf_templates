@@ -3,6 +3,7 @@ interface {{ interface }}
 {% for ip in interface.ip_addresses.all() %}
   ip address {{ ip.address  }}
 {% endfor %}
+{% endfor %}
 !
 interface GigabitEthernet1/0/47
  description FW-A Eth5
