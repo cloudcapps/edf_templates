@@ -1,4 +1,4 @@
-{% for iname, idata in interfaces.items() -%}
+{% for iname, idata in device.interfaces.items() -%}
 interface {{ iname }}
  {{ idata.description }}
  {{ idata.ipv4_address }}
