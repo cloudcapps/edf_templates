@@ -1,7 +1,7 @@
 {% for interface in device.interfaces.filter(ip_addresses__isnull=False) %}
-  {% set ip_address = interface.ip_addresses.first() %}
-  interface {{ interface }}
-  ip address {{ ip_address.address.ip }} {{ ip_address.address.netmask }}
+{% set ip_address = interface.ip_addresses.first() %}
+interface {{ interface }}
+ip address {{ ip_address.address.ip }} {{ ip_address.address.netmask }}
 {% endfor %}
 !
 interface GigabitEthernet1/0/47
