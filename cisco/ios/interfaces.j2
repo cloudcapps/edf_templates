@@ -2,7 +2,7 @@
 interface {{ interface }}
  description {{interface.description}}
 {% for ip in interface.ip_addresses.all() %}
- ip address {{ ip_address.address.ip }} {{ ip_address.address.netmask }}
+ ip address {{ ip_address.ip }} {{ ip_address.netmask }}
 {% endfor %}
 {% endfor %}
 !
