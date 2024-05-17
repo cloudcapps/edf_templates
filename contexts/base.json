@@ -1,0 +1,114 @@
+{
+  "aaa": {
+      "authentication_list": "ISE_RADIUS",
+      "server_group": "ISE-SERVERS"
+  },
+  "access_lists": {
+      "REMOTE_ACCESS": {
+          "private": [
+              "10.0.0.0 0.255.255.255",
+              "172.16.0.0 0.15.255.255"
+          ],
+          "public": [
+              "67.131.244.128 0.0.0.63",
+              "69.161.202.0 0.0.1.255"
+          ]
+      },
+      "SNMP_ACL": {
+          "device42": [
+              "10.66.1.49",
+              "10.66.1.50",
+              "10.66.1.51",
+              "10.66.1.52"
+          ],
+          "dnac": [
+              "10.64.4.23",
+              "10.64.4.24"
+          ],
+          "forescout": [
+              "10.66.3.41",
+              "10.82.3.41"
+          ],
+          "logicmonitor": [
+              "10.66.1.40",
+              "10.66.1.41",
+              "10.66.1.42",
+              "10.66.1.43"
+          ],
+          "netflow": [
+              "10.1.15.156"
+          ],
+          "netutil": [
+              "10.64.1.106",
+              "172.16.200.106"
+          ],
+          "tenable": [
+              "10.66.1.27",
+              "10.82.1.39"
+          ]
+      }
+  },
+  "crypto": {
+      "key_size": "2048"
+  },
+  "dns": {
+      "domain_name": "edf-re.com",
+      "servers": [
+          "10.1.10.20",
+          "10.1.10.21"
+      ]
+  },
+  "enable": {
+      "secret": "TEMP_SECRET"
+  },
+  "line": {
+      "acl": "REMOTE_ACCESS",
+      "exec_timeout": 15,
+      "vty_max": 31
+  },
+  "mgmt_vrf": "Mgmt-vrf",
+  "ntp": {
+      "servers": [
+          "10.1.10.20",
+          "10.1.10.21"
+      ]
+  },
+  "radius": {
+      "acct_port": "1813",
+      "auth_port": "1812",
+      "key": "R@DIU$4eDF***",
+      "servers": {
+          "COLO-ISE-01": "10.82.3.101",
+          "SDHQ-ISE-01": "10.66.3.101"
+      }
+  },
+  "snmp": {
+      "read_only": {
+          "acl": "SNMP_ACL",
+          "auth": "l0g1cM0nAuTh20",
+          "group": "EDF_SNMP_RO_G",
+          "priv": "l0g1cM0nPrIv20",
+          "user": "SNMP_RO",
+          "view": "EDF_SNMP_RO_V"
+      },
+      "read_write": {
+          "acl": "SNMP_ACL",
+          "auth": "L0g!cm0N#20@3df",
+          "group": "EDF_SNMP_RW_G",
+          "priv": "3DFL0g!cm0N#209",
+          "user": "SNMP_RW",
+          "view": "EDF_SNMP_RW_V"
+      }
+  },
+  "source_interface": "Vlan1000",
+  "syslog": {
+      "port": "2505",
+      "servers": [
+          "10.64.1.177"
+      ]
+  },
+  "users": {
+      "name": "ProdAdmin",
+      "secret": "TEMP_SECRET"
+  }
+}
