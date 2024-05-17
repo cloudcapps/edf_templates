@@ -3,4 +3,3 @@ snmp-server group {{params.group}} v3 priv read {{params.view}}
 snmp-server view {{params.view}} iso included
 snmp-server user {{params.user}} {{params.group}} v3 auth sha {{params.auth}} priv aes 256 {{params.priv}} access {{params.acl}}
 {%- endfor %}
-!

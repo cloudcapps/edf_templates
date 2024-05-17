@@ -11,7 +11,10 @@ no ip gratuitous-arps
 no ip domain-lookup
 !
 ip routing
+!
 {% include 'cisco/ios/dns.j2' %}
+!
+crypto key generate rsa general-keys modulus {{crypto.key_size}}
 !
 {% include 'cisco/ios/ssh.j2' %}
 archive
@@ -36,7 +39,6 @@ hostname {{device.name}}
 {% include 'cisco/ios/syslog.j2' %}
 !
 {% include 'cisco/ios/snmp.j2' %}
-!
 !
 banner login %
 
