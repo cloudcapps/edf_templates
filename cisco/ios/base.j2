@@ -1,4 +1,4 @@
-{% include 'cisco-ios/aaa.j2' %}
+{% include 'cisco/ios/aaa.j2' %}
 !
 clock timezone PST -8 0
 clock summer-time PDT recurring
@@ -11,9 +11,9 @@ no ip gratuitous-arps
 no ip domain-lookup
 !
 ip routing
-{% include 'cisco-ios/dns.j2' %}
+{% include 'cisco/ios/dns.j2' %}
 !
-{% include 'cisco-ios/ssh.j2' %}
+{% include 'cisco/ios/ssh.j2' %}
 archive
  log config
   logging enable
@@ -25,17 +25,17 @@ archive
 !
 hostname {{device.name}}
 !
-{% include 'cisco-ios/users.j2' %}
+{% include 'cisco/ios/users.j2' %}
 !
-{% include 'cisco-ios/acls.j2' %}
+{% include 'cisco/ios/acls.j2' %}
 !
-{% include 'cisco-ios/vlans.j2' %}
+{% include 'cisco/ios/vlans.j2' %}
 !
-{% include 'cisco-ios/interfaces.j2' %}
+{% include 'cisco/ios/interfaces.j2' %}
 !
-{% include 'cisco-ios/syslog.j2' %}
+{% include 'cisco/ios/syslog.j2' %}
 !
-{% include 'cisco-ios/snmp.j2' %}
+{% include 'cisco/ios/snmp.j2' %}
 !
 !
 banner login %
@@ -44,7 +44,7 @@ banner login %
 
 %
 !
-{% include 'cisco-ios/line.j2' %}
+{% include 'cisco/ios/line.j2' %}
 !
-{% include 'cisco-ios/ntp.j2' %}
+{% include 'cisco/ios/ntp.j2' %}
 !
