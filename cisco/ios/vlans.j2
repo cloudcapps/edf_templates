@@ -1,10 +1,6 @@
 {% for vlan in device.site.vlan_groups.all()|sort(attribute='name') %}
-  VLAN Group: {{ vlan.name }}
   {% for vlan in vlan.vlans.all()|sort(attribute='vid') %}
-    VLAN ID: {{ vlan.vid }}
-    VLAN Name: {{ vlan.name }}
-    
-    # Add any other VLAN-specific configuration here
-    
+    vlan {{ vlan.vid }}
+     name {{ vlan.name }}
   {% endfor %}
 {% endfor %}
