@@ -108,7 +108,7 @@
           "10.64.1.177"
       ]
   },
-  "users": {
+  "user": {
       "name": "ProdAdmin",
       "secret": "TEMP_SECRET"
   }

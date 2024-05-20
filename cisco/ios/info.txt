@@ -1,2 +1,0 @@
-d = Device.objects.get(name="FOXQ-IT-SW-OM-01")
-d.site.vlan_groups.get(id=1).vlans.all()
