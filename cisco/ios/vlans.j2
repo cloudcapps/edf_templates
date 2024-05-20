@@ -1,12 +1,4 @@
 {% for vlan_group in vlan_groups %}
   VLAN Group: {{ vlan_group.name }}
-  
-  {% for vlan in vlan_group.vlans %}
-    VLAN ID: {{ vlan.vid }}
-    VLAN Name: {{ vlan.name }}
-    
-    # Add any other VLAN-specific configuration here
-    
-  {% endfor %}
-  
+ 
 {% endfor %}
