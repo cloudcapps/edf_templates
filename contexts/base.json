@@ -61,6 +61,7 @@
   "enable": {
       "secret": "TEMP_SECRET"
   },
+  "environment": "IT",
   "line": {
       "acl": "REMOTE_ACCESS",
       "exec_timeout": 15,

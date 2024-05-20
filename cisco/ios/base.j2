@@ -18,15 +18,6 @@ crypto key generate rsa general-keys modulus {{crypto.key_size}}
 !
 {% include 'cisco/ios/ssh.j2' %}
 !
-archive
- log config
-  logging enable
-  logging size 700
-  hidekeys
- path flash:archive
- maximum 10
- write-memory
-!
 hostname {{device.name}}
 !
 {% include 'cisco/ios/users.j2' %}
