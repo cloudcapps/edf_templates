@@ -1,7 +1,8 @@
-{%- for vlg in device.site.vlan_groups.all() %}
-{%- for vl in device.site.vlan_groups.{{vlg}}.vlans.all() %}
+{%- set vlg = device.site.vlan_groups.all() -%}
+{%- set vls = vlg | selectattr('vid', 'name') -%}
+{%- for vl in vls %}
+
 vlan {{vl.vid }}
    name {{ vl.name }}
 !
-{%- endfor %}
 {%- endfor %}
