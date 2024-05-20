@@ -7,12 +7,6 @@ hostname {{device.name}}
 !
 {% include 'cisco/ios/syslog.j2' %}
 !
-banner login %
-
-{% include 'common/banner.j2' %}
-
-%
-!
 {% include 'cisco/ios/line.j2' %}
 !
 {% include 'cisco/ios/ntp.j2' %}
