@@ -5,5 +5,5 @@
 #{%- endfor %}
 
 {%- for vl in device.site.vlans.all() %}
-{{vl}}
+{{vl.items()}}
 {%- endfor %}
