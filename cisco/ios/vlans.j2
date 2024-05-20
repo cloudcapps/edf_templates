@@ -1,7 +1,5 @@
-{% set ns = namespace(group=false) %}
 {%- for vlg in device.site.vlan_groups.all() %}
-{% set ns = namespace(group=vlg) %}
-{%- for vl in device.site.vlan_groups.{{ns.vlg}}.vlans.all() %}
+{%- for vl in device.site.vlan_groups.{{vlg}}.vlans.all() %}
 vlan {{vl.vid }}
    name {{ vl.name }}
 !
