@@ -1,8 +1,8 @@
-{%- for vlan in device.site.vlan_groups.all()|sort(attribute='name') -%}
+{%- for vlg in device.site.vlan_groups.all() -%}
 {%- if vlan.name == "IT VLANS" -%}
-{%- for vlan in vlan.vlans.all()|sort(attribute='vid') %}
-vlan {{ vlan.vid }}
- name {{ vlan.name }}
+{%- for vl in vlg.vlans.all()%}
+vlan {{ vl.vid }}
+ name {{ vl.name }}
 {%- endfor -%}
 {%- endif -%}
 {%- endfor -%}
