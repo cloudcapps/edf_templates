@@ -3,7 +3,6 @@
 {%- for vlan in vlan.vlans.all()|sort(attribute='vid') %}
 vlan {{ vlan.vid }}
  name {{ vlan.name }}
-
 {%- endfor -%}
 {%- endif -%}
 {%- endfor -%}
