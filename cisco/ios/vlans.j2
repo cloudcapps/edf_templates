@@ -1,4 +1,4 @@
-{%- for vlg in device.site.vlan_groups.all() %}
+{%- for vl in device.site.vlan_groups.all() %}
 vlan {{vl.vid }}
    name {{ vl.name }}
 !
