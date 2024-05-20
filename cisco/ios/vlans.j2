@@ -1,5 +1,5 @@
 {%- for vlan in device.site.vlan_groups.all()|sort(attribute='name') -%}
-{%- if vlan.name == "IT VLANS" -%}
+{%- if vlan.name == {{environment}}" VLANS" -%}
 {%- for vlan in vlan.vlans.all()|sort(attribute='vid') %}
 vlan {{ vlan.vid }}
  name {{ vlan.name }}
