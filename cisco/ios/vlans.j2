@@ -1,6 +1,5 @@
-{%- set env = environment + " VLANS" %}
 {%- for vlg in device.site.vlan_groups.all() -%}
-{%- if vlg.name == env -%}
+{%- if vlg.name == environment + " VLANS" -%}
 {%- for vl in vlg.vlans.all()%}
 vlan {{ vl.vid }}
  name {{ vl.name }}
