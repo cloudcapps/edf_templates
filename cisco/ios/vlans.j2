@@ -1,6 +1,6 @@
 {% for vlan in device.site.vlan_groups.all()|sort(attribute='name') %}
-  {% for vlan in vlan.vlans.all()|sort(attribute='vid') %}
-    vlan {{ vlan.vid }}
-     name {{ vlan.name }}
-  {% endfor %}
+{% for vlan in vlan.vlans.all()|sort(attribute='vid') %}
+vlan {{ vlan.vid }}
+ name {{ vlan.name }}
+{% endfor %}
 {% endfor %}
