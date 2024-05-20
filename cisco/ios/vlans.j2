@@ -1,5 +1,7 @@
-{%- for vl in device.site.vlan-groups.all() %}
-vlan {{vl.vid }}
-   name {{ vl.name }}
-!
-{%- endfor %}
+#{%- for vl in device.site.vlans.all() %}
+#vlan {{vl.vid }}
+#   name {{ vl.name }}
+#!
+#{%- endfor %}
+
+{{device.site.vlans.all()}}
