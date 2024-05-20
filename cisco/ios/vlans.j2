@@ -1,5 +1,5 @@
 {%- set vlg = device.site.vlan_groups.all() -%}
-{%- for vl in ipam.vlan_groups.vlg.all() %}
+{%- for vl in vlan_groups.vlg.all() %}
 vlan {{vl.vid }}
    name {{ vl.name }}
 !
